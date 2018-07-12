@@ -1,0 +1,19 @@
+{
+  "name": "route-store",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krang-drive/route-store.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krang-drive/route-store/issues"
+  },
+  "homepage": "https://github.com/krang-drive/route-store#readme"
+}
