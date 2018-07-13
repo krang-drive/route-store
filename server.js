@@ -39,7 +39,7 @@ var routeSchema = new Schema({
     routeId: String,
     facilityId: String,
     googleMapsLink: String,
-    Bounty: Number
+    bounty: Number
 
 })
 
