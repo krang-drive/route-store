@@ -69,7 +69,7 @@ app.get('/', function (req, res) {
 
 app.get('/routes', function (req, res) {
 
-  route.find({driverId: null}, function (err, docs) {
+  route.find({driverId: "-1"}, function (err, docs) {
 
     if(!err){
 
