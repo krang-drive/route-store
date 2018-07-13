@@ -69,7 +69,7 @@ app.get('/', function (req, res) {
 
 app.get('/routes', function (req, res) {
 
-  routes.find({driverId: null}, function (err, docs) {
+  route.find({driverId: null}, function (err, docs) {
 
     if(!err){
 
@@ -94,7 +94,7 @@ app.get('/routes', function (req, res) {
 
 app.post('/routes', function(req, res){
 
-    routes.find({routeId: req.body.routeId}, req.body , {upsert:true}, function(err, doc) {
+    route.find({routeId: req.body.routeId}, req.body , {upsert:true}, function(err, doc) {
 
       if (!err) {
 
@@ -119,7 +119,7 @@ app.delete('/routes/:id', function(req, res){
 
     var id = req.params['id'];
 
-    routes.find({routeId: id}, function (err, doc){
+    route.find({routeId: id}, function (err, doc){
 
         if(!err){
 
@@ -147,7 +147,7 @@ app.get('/routes/:id', function(req, res){
 
     var id = req.params['id'];
 
-    routes.find({routeId: id}, function (err, doc){
+    route.find({routeId: id}, function (err, doc){
 
         if(!err){
 
