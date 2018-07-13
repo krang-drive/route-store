@@ -118,6 +118,27 @@ app.post('/routes', function(req, res){
 
 //----------------------------------------------------------------------------//
 
+app.post('/routeAll', function(req, res) {
+  var routes = req.body.data.allRoutes;
+  for(var i = 0; i < routes.length; i++) {
+    var id = routes[i].routeId;
+    route.findOneAndUpdate({routeId: id}, routes[i], {upsert:true}, function(err, doc) {
+      //Writing out the post information to console.
+      if (!err) {
+        res.send(doc);
+        console.log('POST -> routeId: ' + id);
+      }
+      else {
+        res.send(err);
+        console.error("Error, no drivers updated!")
+      }
+    });
+  }
+})
+
+
+//----------------------------------------------------------------------------//
+
 app.delete('/routes/:id', function(req, res){
 
     var id = req.params['id'];
