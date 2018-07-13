@@ -94,22 +94,25 @@ app.get('/routes', function (req, res) {
 
 app.post('/routes', function(req, res){
 
-    route.find({routeId: req.body.routeId}, req.body , {upsert:true}, function(err, doc) {
+  route.findOneAndUpdate({routeId: req.body.routeId}, req.body , {upsert:true}, function(err, doc) {
 
-      if (!err) {
+    //Writing out the post information to console.
+    if (!err) {
 
-        console.log('POST -> routeId: ' + req.body.routeId + ', bounty: ' + req.body.bounty);
-        res.send(doc);
+      res.send(doc);
 
-      }
-      else {
+      console.log('POST -> routeId: ' + req.body.routeId + ', bounty: ' + req.body.bounty);
 
-        console.error("An Error has occured :(")
-        res.send(err);
+    }
+    else {
 
-      }
+      res.send(err);
 
-    });
+      console.error("Error, no drivers updated!")
+
+    }
+
+  });
 
 });
 
