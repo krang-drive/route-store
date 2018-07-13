@@ -147,7 +147,7 @@ app.get('/routes/:id', function(req, res){
 
     var id = req.params['id'];
 
-    routes.find({routeId = id}, function (err, doc){
+    routes.find({routeId: id}, function (err, doc){
 
         if(!err){
 
