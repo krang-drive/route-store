@@ -39,7 +39,7 @@ var routeSchema = new Schema({
     routeId: String,
     facilityId: String,
     googleMapsLink: String,
-    Bounty: Number
+    bounty: Number
 
 })
 
@@ -61,7 +61,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
 
-  res.send("Hello, Worlds!");
+  res.send("Hello, World!");
 
 });
 
@@ -69,7 +69,7 @@ app.get('/', function (req, res) {
 
 app.get('/routes', function (req, res) {
 
-  route.find({driverId: "-1"}, function (err, docs) {
+  route.find({driverId: -1}, function (err, docs) {
 
     if(!err){
 
