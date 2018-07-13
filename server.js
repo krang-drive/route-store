@@ -55,7 +55,7 @@ module.exports = route;
 
 app.use(bodyParser.json());
 
-app.use(bodyParser.urlencoded({ extented: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //----------------------------------------------------------------------------//
 
@@ -119,7 +119,7 @@ app.delete('/routes/:id', function(req, res){
 
     var id = req.params['id'];
 
-    routes.find({routeId = id}, function (err, doc){
+    routes.find({routeId: id}, function (err, doc){
 
         if(!err){
 
