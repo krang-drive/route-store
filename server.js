@@ -44,7 +44,7 @@ var routeSchema = new Schema({
 })
 
 //Create a model that uses the schema.
-var route = mongoose.model('driver', driverSchema);
+var route = mongoose.model('route', routeSchema);
 
 //Make this available to Node app users.
 module.exports = route;
@@ -69,7 +69,24 @@ app.get('/', function (req, res) {
 
 app.get('/routes', function (req, res) {
 
+  routes.find({driverId: null}, function (err, docs) {
 
+    if(!err){
+
+        res.send(docs);
+
+        console.log("Online routes found.");
+
+    }
+    else {
+
+        res.send(err);
+
+        console.log("Error, no routes found!");
+
+    }
+
+  });
 
 });
 
@@ -77,15 +94,77 @@ app.get('/routes', function (req, res) {
 
 app.post('/routes', function(req, res){
 
+    routes.find({routeId: req.body.routeId}, req.body , {upsert:true}, function(err, doc) {
 
+      if (!err) {
+
+        console.log('POST -> routeId: ' + req.body.routeId + ', bounty: ' + req.body.bounty);
+        res.send(doc);
+
+      }
+      else {
+
+        console.error("An Error has occured :(")
+        res.send(err);
+
+      }
+
+    });
 
 });
 
 //----------------------------------------------------------------------------//
 
-app.get('/routes/:routeId', function(req, res){
+app.delete('/routes/:id', function(req, res){
+
+    var id = req.params['id'];
+
+    routes.find({routeId = id}, function (err, doc){
+
+        if(!err){
+
+            res.send(doc);
+
+            console.log('Success! Route deleted!');
+
+        }
+        else{
+
+            res.send(err);
+
+            console.error("Error, no routes deleted!")
+
+        }
+
+    });
+
+});
 
 
+//----------------------------------------------------------------------------//
+
+app.get('/routes/:id', function(req, res){
+
+    var id = req.params['id'];
+
+    routes.find({routeId = id}, function (err, doc){
+
+        if(!err){
+
+            res.send(doc);
+
+            console.log('Success! Route was found!');
+
+        }
+        else{
+
+            res.send(err);
+
+            console.error("Error, no routes found!")
+
+        }
+
+    });
 
 });
 
