@@ -119,21 +119,17 @@ app.post('/routes', function(req, res){
 //----------------------------------------------------------------------------//
 
 app.post('/routeAll', function(req, res) {
-  var routes = req.body.data.allRoutes;
-  for(var i = 0; i < routes.length; i++) {
-    var id = routes[i].routeId;
-    route.findOneAndUpdate({routeId: id}, routes[i], {upsert:true}, function(err, doc) {
-      //Writing out the post information to console.
+  var routes = req.body.allRoutes;
+  routes.forEach(function(element) {
+    route.update({},element,{upsert:true}, function(err,doc) {
       if (!err) {
-        res.send(doc);
-        console.log('POST -> routeId: ' + id);
+        console.log('POST -> routeId: ' + element.routeId);
       }
       else {
-        res.send(err);
-        console.error("Error, no drivers updated!")
+        console.error("An Error has occured :(", err)
       }
-    });
-  }
+    })
+  })
 })
 
 
